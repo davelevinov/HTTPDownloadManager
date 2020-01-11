@@ -7,12 +7,11 @@ import java.util.*;
 public class HTTPDownloader {
     private static String FILE_URL = "https://archive.org/download/Mario1_500/Mario1_500.avi";
     private static String FILE_NAME = "Mario1_500.avi";
-    private static int DOWNLOAD_PERCENTAGE = 1048576;
 
     public static void main (String[]args){
         try {
             URL downloadUrl = new URL(FILE_URL);
-            try (BufferedInputStream in = new BufferedInputStream(new URL(FILE_URL).openStream());
+            try (BufferedInputStream in = new BufferedInputStream(downloadUrl.openStream());
                  FileOutputStream fileOutputStream = new FileOutputStream(FILE_NAME)) {
                 URLConnection conn = downloadUrl.openConnection();
                 int bytesRead;
