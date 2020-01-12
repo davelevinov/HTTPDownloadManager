@@ -1,3 +1,4 @@
 # Ignore various test download files
 *.avi
 *.iso
+*.idea
