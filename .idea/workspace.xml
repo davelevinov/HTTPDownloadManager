@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cadf3183-5ff0-49b2-96db-cb07dab3f47b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/HTTPDownloadManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IdcDm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Chunk.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/FileWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/HTTPRangeGetter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Metadata.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mario1_500.avi" beforeDir="false" afterPath="$PROJECT_DIR$/Mario1_500.avi" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HTTPDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HTTPDownloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HTTPDownloadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HTTPDownloadManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HTTPDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IdcDm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IdcDm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +24,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1WGNfnEiEMVEK2C8rQnQ2mRyVMq" />
@@ -77,7 +85,8 @@
       <option name="presentableId" value="Default" />
       <updated>1578772076513</updated>
       <workItem from="1578772079223" duration="2141000" />
-      <workItem from="1578846278177" duration="13185000" />
+      <workItem from="1578846278177" duration="36830000" />
+      <workItem from="1579121492143" duration="953000" />
     </task>
     <servers />
   </component>
@@ -89,37 +98,49 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1578856718256" />
+    <state x="446" y="50" key="#com.intellij.ide.util.MemberChooser" timestamp="1579003746805">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="446" y="50" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1579003746805" />
     <state x="371" y="130" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1578856633726">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="130" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1280.680@0.0.1280.680" timestamp="1578856633726" />
-    <state x="237" y="0" key="CommitChangelistDialog2" timestamp="1578772512389">
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1579010823528">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="237" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1578772512389" />
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.680@0.0.1280.680" timestamp="1579010823528" />
+    <state x="237" y="0" key="CommitChangelistDialog2" timestamp="1578862370511">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="237" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1578862370511" />
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog" timestamp="1578772755641">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1578772755641" />
-    <state width="1237" height="265" key="GridCell.Tab.0.bottom" timestamp="1578862328819">
+    <state width="1237" height="265" key="GridCell.Tab.0.bottom" timestamp="1579012119442">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="265" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1578862328819" />
-    <state width="1237" height="265" key="GridCell.Tab.0.center" timestamp="1578862328819">
+    <state width="1237" height="265" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1579012119442" />
+    <state width="1237" height="265" key="GridCell.Tab.0.center" timestamp="1579012119442">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="265" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1578862328819" />
-    <state width="1237" height="265" key="GridCell.Tab.0.left" timestamp="1578862328819">
+    <state width="1237" height="265" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1579012119442" />
+    <state width="1237" height="265" key="GridCell.Tab.0.left" timestamp="1579012119442">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="265" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1578862328819" />
-    <state width="1237" height="265" key="GridCell.Tab.0.right" timestamp="1578862328819">
+    <state width="1237" height="265" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1579012119442" />
+    <state width="1237" height="265" key="GridCell.Tab.0.right" timestamp="1579012119442">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="265" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1578862328819" />
-    <state x="349" y="168" key="com.intellij.ide.util.TipDialog" timestamp="1578846277573">
+    <state width="1237" height="265" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1579012119442" />
+    <state x="233" y="76" key="Vcs.Push.Dialog.v2" timestamp="1579121628044">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="349" y="168" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1578846277573" />
+    <state x="233" y="76" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1579121628044" />
+    <state x="349" y="168" key="com.intellij.ide.util.TipDialog" timestamp="1579122795207">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="349" y="168" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1579122795207" />
   </component>
 </project>

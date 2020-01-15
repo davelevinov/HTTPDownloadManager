@@ -1,86 +1,78 @@
-import java.io.*;
 import java.net.*;
-import java.util.*;
-import java.nio.*;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class HTTPDownloadManager {
-    private static String m_fileURL;
-    private static int m_maximumConcurrentConnections;
+    //private static List<URL> m_ListOfURLs;
+    private String m_FileURL;
+    private static int m_NumOfConnections;
     private String m_FileName;
-    private int m_currentPoint;
+    private int m_FileLength;
+    private Thread[] m_Threads;
 
-
-    public HTTPDownloadManager(String fileURL){
-        m_fileURL = fileURL;
+    public HTTPDownloadManager(String fileURL, int numOfConnections){
+        m_FileURL = fileURL;
+        m_NumOfConnections = numOfConnections;
     }
 
-    public HTTPDownloadManager(String fileURL, int maximumConcurrentConnections){
-        m_fileURL = fileURL;
-        m_maximumConcurrentConnections = maximumConcurrentConnections;
+    public void setFileName(String fileURL) {
+        m_FileName = fileURL.substring(fileURL.lastIndexOf('/') + 1);
     }
 
-    private void setFileNameFromURL() {
-        m_FileName = m_fileURL.substring(m_fileURL.lastIndexOf('/') + 1);
-    }
-
-    public void downloadFile() {
-        setFileNameFromURL();
-        //System.out.println("Downloading using " + m_maximumConcurrentConnections + " connections...");
-        try{
-            URL downloadUrl = new URL(m_fileURL);
-            HttpURLConnection conn = (HttpURLConnection) downloadUrl.openConnection();
-
-            BufferedInputStream in = new BufferedInputStream(conn.getInputStream());
-            //FileOutputStream fileOutputStream = new FileOutputStream(m_FileName);
-
-            RandomAccessFile fileToWrite = new RandomAccessFile(m_FileName, "rw");
-            int startPoint = 0;
-            fileToWrite.seek(startPoint);
-
-            m_currentPoint = startPoint;
-
-            int bytesRead;
-            double totalBytesRead = 0;
-
-            int currentPercentage;
-            int counterPercentage = 0;
-
-            long fileSize = conn.getContentLengthLong();
-            int chunckSize = (int)fileSize/1024;
-            int endingPoint = (int)fileSize;
-            byte dataBuffer[] = new byte[chunckSize];
-
-
-            System.out.println("File size is: " + chunckSize + "KB");
-
-            while (totalBytesRead < endingPoint){
-
-                //reads up to chunckSize bytes from this input stream into dataBuffer array of bytes
-                //the start offset in the bytes array is 0
-                //returns number of bytes read into dataBuffer or -1 if no more data to read (end of input stream)
-                bytesRead = in.read(dataBuffer, 0, chunckSize);
-                if(bytesRead == -1) {
-                    break;
+    public void setFileLength() {
+        //for (URL downloadUrl : m_ListOfURLs) {
+            URL downloadUrl = null;
+            HttpURLConnection conn = null;
+            try {
+                downloadUrl = new URL(m_FileURL);
+                conn = (HttpURLConnection) downloadUrl.openConnection();
+                m_FileLength = conn.getContentLength();
+                System.out.println("File size is: " + m_FileLength / 1024 + "KB");
+            } catch (Exception e) {
+                e.printStackTrace();
+                return;
+            } finally {
+                if (conn != null) {
+                    conn.disconnect();
                 }
-                totalBytesRead += bytesRead;
-
-                //writes bytesRead bytes from the dataBuffer into this file
-                //the start offset in the file is 0
-                fileToWrite.write(dataBuffer, 0, bytesRead);
-
-                currentPercentage = (int) ((totalBytesRead / fileSize) * 100.0);
-
-                // if still downloading
-                if(currentPercentage > counterPercentage) {
-                    System.out.println("Downloaded " + currentPercentage + "%");
-                    counterPercentage++;
-                }
-
             }
-            System.out.println("Finished downloading");
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
         }
+    //}
+
+    public void setNumOfConnections(int numOfConnections){
+        m_NumOfConnections = numOfConnections;
+    }
+
+    public void startDownload() {
+        setFileName(m_FileURL);
+        setFileLength();
+        setNumOfConnections(m_NumOfConnections);
+
+        Metadata metadata = null;
+        LinkedBlockingQueue<Chunk> chunkQueue = new LinkedBlockingQueue<Chunk>();
+        Thread fileWriter = new Thread(new FileWriter(metadata, chunkQueue));
+        fileWriter.start();
+        m_Threads = new Thread[m_NumOfConnections];
+
+        if (Metadata.exists(m_FileURL))
+        {
+            metadata = metadata.existingMetadata(m_FileURL);
+        } else {
+            metadata = new Metadata(m_FileURL);
+        }
+
+        int i;
+        int offset = 0;
+        int chunkLength = m_FileLength / m_NumOfConnections ;
+
+        for (i = 0; i < m_NumOfConnections - 1; i++){
+            HTTPRangeGetter rangeGetter = new HTTPRangeGetter(chunkLength, offset, i, m_FileURL, m_FileName);
+            m_Threads[i] = new Thread(rangeGetter);
+            offset += chunkLength;
+        }
+
+        HTTPRangeGetter rangeGetter = new HTTPRangeGetter(((m_FileLength % m_NumOfConnections) + chunkLength), offset, i, m_FileURL, m_FileName); //last one gets remainder of the file
+        m_Threads[i] = new Thread(rangeGetter);
+
     }
 
 }
