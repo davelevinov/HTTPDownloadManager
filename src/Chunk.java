@@ -1,11 +1,23 @@
 public class Chunk {
-    private byte[] m_Data;
-    private long m_Offset;
-    private int m_LengthInBytes;
+    public byte[] m_ChunkData;
+    public long m_Offset;
+    public int m_ChunkIndex;
 
-    Chunk(byte[] data, long offset, int lengthInBytes) {
-        m_Data = data != null ? data.clone() : null;
+    Chunk(byte[] data, long offset, int chunkIndex) {
+        m_ChunkIndex = chunkIndex;
+        m_ChunkData = data;
         m_Offset = offset;
-        m_LengthInBytes = lengthInBytes;
+    }
+
+    public long getOffset(){
+        return m_Offset;
+    }
+
+    public byte[] getChunkData(){
+        return m_ChunkData;
+    }
+
+    public int getChunkIndex(){
+        return m_ChunkIndex;
     }
 }

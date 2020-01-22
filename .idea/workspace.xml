@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cadf3183-5ff0-49b2-96db-cb07dab3f47b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Chunk.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/FileWriter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/HTTPRangeGetter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Metadata.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chunk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chunk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FileWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileWriter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/HTTPDownloadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HTTPDownloadManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HTTPDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IdcDm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IdcDm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HTTPRangeGetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HTTPRangeGetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Metadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Metadata.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +39,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -51,7 +51,7 @@
     <configuration name="IdcDm" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="IdcDm" />
       <module name="HTTPDownloadManager" />
-      <option name="PROGRAM_PARAMETERS" value="https://archive.org/download/Mario1_500/Mario1_500.avi" />
+      <option name="PROGRAM_PARAMETERS" value="https://archive.org/download/Mario1_500/Mario1_500.avi; 10" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -87,17 +87,33 @@
       <workItem from="1578772079223" duration="2141000" />
       <workItem from="1578846278177" duration="36830000" />
       <workItem from="1579121492143" duration="953000" />
+      <workItem from="1579122791807" duration="781000" />
+      <workItem from="1579512357947" duration="4557000" />
+      <workItem from="1579566560551" duration="35238000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578856718256">
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579698529518">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1578856718256" />
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1579698529518" />
     <state x="446" y="50" key="#com.intellij.ide.util.MemberChooser" timestamp="1579003746805">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -118,29 +134,64 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1578772755641" />
-    <state width="1237" height="265" key="GridCell.Tab.0.bottom" timestamp="1579012119442">
+    <state width="1237" height="149" key="GridCell.Tab.0.bottom" timestamp="1579698531377">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="265" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1579012119442" />
-    <state width="1237" height="265" key="GridCell.Tab.0.center" timestamp="1579012119442">
+    <state width="1237" height="149" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1579698531377" />
+    <state width="1237" height="149" key="GridCell.Tab.0.center" timestamp="1579698531377">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="265" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1579012119442" />
-    <state width="1237" height="265" key="GridCell.Tab.0.left" timestamp="1579012119442">
+    <state width="1237" height="149" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1579698531377" />
+    <state width="1237" height="149" key="GridCell.Tab.0.left" timestamp="1579698531376">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="265" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1579012119442" />
-    <state width="1237" height="265" key="GridCell.Tab.0.right" timestamp="1579012119442">
+    <state width="1237" height="149" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1579698531376" />
+    <state width="1237" height="149" key="GridCell.Tab.0.right" timestamp="1579698531377">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="265" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1579012119442" />
+    <state width="1237" height="149" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1579698531377" />
+    <state width="1237" height="204" key="GridCell.Tab.1.bottom" timestamp="1579698519035">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="204" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1579698519035" />
+    <state width="1237" height="204" key="GridCell.Tab.1.center" timestamp="1579698519034">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="204" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1579698519034" />
+    <state width="1237" height="204" key="GridCell.Tab.1.left" timestamp="1579698519034">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="204" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1579698519034" />
+    <state width="1237" height="204" key="GridCell.Tab.1.right" timestamp="1579698519035">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="204" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1579698519035" />
+    <state x="144" y="0" key="SettingsEditor" timestamp="1579695325311">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="144" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1579695325311" />
     <state x="233" y="76" key="Vcs.Push.Dialog.v2" timestamp="1579121628044">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="233" y="76" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1579121628044" />
-    <state x="349" y="168" key="com.intellij.ide.util.TipDialog" timestamp="1579122795207">
+    <state x="349" y="168" key="com.intellij.ide.util.TipDialog" timestamp="1579566561420">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="349" y="168" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1579122795207" />
+    <state x="349" y="168" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1579566561420" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1579692738847">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1579692738847" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/HTTPDownloadManager.java</url>
+          <line>90</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -1,78 +1,114 @@
+import java.io.IOException;
 import java.net.*;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class HTTPDownloadManager {
     //private static List<URL> m_ListOfURLs;
     private String m_FileURL;
-    private static int m_NumOfConnections;
+    private int m_NumOfConnections;
     private String m_FileName;
     private int m_FileLength;
     private Thread[] m_Threads;
+    public Metadata m_Metadata;
+    public int m_TotalNumOfChunks;
+    public static final int CHUNK_SIZE = 4096;
+    public static final String METADATA_NAME_EXTENSION = "_metadata";
+    private double m_NumOfChunksPerThread;
+    private double m_RangeSize;
+    private LinkedBlockingQueue<Chunk> m_ChunksQueue;
 
     public HTTPDownloadManager(String fileURL, int numOfConnections){
         m_FileURL = fileURL;
         m_NumOfConnections = numOfConnections;
+        m_ChunksQueue = new LinkedBlockingQueue<Chunk>();
+        m_Threads = new Thread[m_NumOfConnections];
+        m_FileName = getFileName(m_FileURL);
+        m_FileLength = getFileLength();
+        m_TotalNumOfChunks = getTotalNumOfChunks();
+        m_NumOfChunksPerThread = getNumOfChunksPerThread();
+        m_RangeSize = getRangeSize();
     }
 
-    public void setFileName(String fileURL) {
-        m_FileName = fileURL.substring(fileURL.lastIndexOf('/') + 1);
+    public String getFileName(String fileURL) {
+        return fileURL.substring(fileURL.lastIndexOf('/') + 1);
     }
 
-    public void setFileLength() {
+    public int getFileLength() {
         //for (URL downloadUrl : m_ListOfURLs) {
             URL downloadUrl = null;
             HttpURLConnection conn = null;
+            int fileLength;
             try {
                 downloadUrl = new URL(m_FileURL);
                 conn = (HttpURLConnection) downloadUrl.openConnection();
-                m_FileLength = conn.getContentLength();
-                System.out.println("File size is: " + m_FileLength / 1024 + "KB");
+                fileLength = conn.getContentLength();
+                System.out.println("File size is: " + fileLength / 1024 + "KB");
             } catch (Exception e) {
                 e.printStackTrace();
-                return;
+                return 1;
             } finally {
                 if (conn != null) {
                     conn.disconnect();
                 }
             }
+            return fileLength;
         }
     //}
 
-    public void setNumOfConnections(int numOfConnections){
-        m_NumOfConnections = numOfConnections;
+    public int getTotalNumOfChunks(){
+        int numOfChunks = (int) (m_FileLength / CHUNK_SIZE);
+        //we check if there is a remainder for the last chunk
+        if (m_FileLength % CHUNK_SIZE != 0) {
+            numOfChunks++;
+        }
+        return numOfChunks;
     }
 
+    
     public void startDownload() {
-        setFileName(m_FileURL);
-        setFileLength();
-        setNumOfConnections(m_NumOfConnections);
+        //will set metadata file to be existent one or new one
+        initMetadata();
+        initRangeGetters();
+        startWriter();
+        startRangeGetters();
+    }
 
-        Metadata metadata = null;
-        LinkedBlockingQueue<Chunk> chunkQueue = new LinkedBlockingQueue<Chunk>();
-        Thread fileWriter = new Thread(new FileWriter(metadata, chunkQueue));
-        fileWriter.start();
-        m_Threads = new Thread[m_NumOfConnections];
-
-        if (Metadata.exists(m_FileURL))
-        {
-            metadata = metadata.existingMetadata(m_FileURL);
-        } else {
-            metadata = new Metadata(m_FileURL);
+    private void startRangeGetters() {
+        for(int i = 0; i < m_Threads.length; i++){
+            m_Threads[i].start();
         }
+    }
 
+    private void startWriter() {
+        Thread fileWriter = new Thread(new FileWriter(m_Metadata, m_ChunksQueue, m_FileName, m_FileLength, m_TotalNumOfChunks));
+        fileWriter.start();
+    }
+
+    private void initRangeGetters() {
         int i;
         int offset = 0;
-        int chunkLength = m_FileLength / m_NumOfConnections ;
-
-        for (i = 0; i < m_NumOfConnections - 1; i++){
-            HTTPRangeGetter rangeGetter = new HTTPRangeGetter(chunkLength, offset, i, m_FileURL, m_FileName);
+        //We fill up the array of threads using rangeGetters, which will each do rangeGetter.run() and download a range of bytes
+        for (i = 0; i < m_Threads.length - 1; i++){
+            HTTPRangeGetter rangeGetter = new HTTPRangeGetter(m_RangeSize, offset, i, m_FileURL, m_FileName, m_NumOfChunksPerThread, m_ChunksQueue);
             m_Threads[i] = new Thread(rangeGetter);
-            offset += chunkLength;
+            offset += m_RangeSize; //the offset jumps by the number of bytes each thread needs to read
         }
 
-        HTTPRangeGetter rangeGetter = new HTTPRangeGetter(((m_FileLength % m_NumOfConnections) + chunkLength), offset, i, m_FileURL, m_FileName); //last one gets remainder of the file
+        //last rangeGetter gets the remainder of the file
+        double remainderOfChunksToRead = m_TotalNumOfChunks % m_NumOfConnections;
+        HTTPRangeGetter rangeGetter = new HTTPRangeGetter(remainderOfChunksToRead*CHUNK_SIZE, offset, i, m_FileURL, m_FileName, remainderOfChunksToRead, m_ChunksQueue);
         m_Threads[i] = new Thread(rangeGetter);
-
     }
 
+    private double getNumOfChunksPerThread() {
+        return Math.floor((m_TotalNumOfChunks/m_NumOfConnections));
+    }
+
+    public double getRangeSize(){
+        return CHUNK_SIZE*m_NumOfChunksPerThread;
+    }
+
+    public void initMetadata() {
+        m_Metadata = Metadata.getMetadata(m_TotalNumOfChunks, m_FileName + METADATA_NAME_EXTENSION);
+    }
 }
