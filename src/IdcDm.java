@@ -10,15 +10,13 @@ public class IdcDm {
 
     public static void main(String[] args) throws MalformedURLException {
        // List<String> url_list = new ArrayList<>();
-
+        int numOfConnections = 1;
 
         if (args.length < 1 || args.length > 2){
             System.err.println("java IdcDm URL|URL-LIST-FILE [MAX-CONCURRENT-CONNECTIONS]");
             System.exit(1);
         }
 
-
-        int numOfConnections = 1;
         if (args.length > 1) {
             numOfConnections = Integer.parseInt(args[1]);
         }

@@ -5,18 +5,20 @@ import java.util.*;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class HTTPRangeGetter implements Runnable{
+public class HTTPRangeGetter implements Runnable {
     private String m_FileURL;
     private String m_FileName;
     private int m_currentPoint;
     private double m_RangeSize;
     private int m_Offset;
     private int m_ThreadID;
-    public static int CHUNK_SIZE = 4096;
+    public int CHUNK_SIZE = 4096;
     public double m_NumOfChunksToRead;
     private LinkedBlockingQueue<Chunk> m_ChunksQueue;
+    private Metadata m_Metadata;
 
-    public HTTPRangeGetter(double rangeSize, int offset, int threadID, String fileURL, String fileName, double numOfChunksToRead, LinkedBlockingQueue chunksQueue){
+    public HTTPRangeGetter(double rangeSize, int offset, int threadID, String fileURL, String fileName,
+                           double numOfChunksToRead, LinkedBlockingQueue chunksQueue, Metadata metadata) {
         m_RangeSize = rangeSize;
         m_FileURL = fileURL;
         m_Offset = offset;
@@ -24,25 +26,47 @@ public class HTTPRangeGetter implements Runnable{
         m_FileName = fileName;
         m_NumOfChunksToRead = numOfChunksToRead;
         m_ChunksQueue = chunksQueue;
+        m_Metadata = metadata;
     }
 
-    public void run(){
+    public void run() {
         //open connection
         HttpURLConnection conn = null;
         try {
             URL downloadUrl = new URL(m_FileURL);
             conn = (HttpURLConnection) downloadUrl.openConnection();
             BufferedInputStream in = new BufferedInputStream(conn.getInputStream());
-            for(int i = 0; i < m_NumOfChunksToRead + 1; i++) {
-                if((m_NumOfChunksToRead - (int)m_NumOfChunksToRead) != 0) { //last thread got remainder, so it might read a piece of chunk at the end
-                    if (i == m_NumOfChunksToRead) { //last entire chunk to read for the last thread
-                        CHUNK_SIZE *= (m_NumOfChunksToRead - (int)m_NumOfChunksToRead);
+            int fileSize = conn.getContentLength();
+            int bytesRead = 0;
+            int delta;
+            int bytesToRead;
+            for(int i = 0; i < m_NumOfChunksToRead; i++){
+                /*
+                if ((m_NumOfChunksToRead - (int) m_NumOfChunksToRead) != 0) {
+                    //last thread got remainder, so it might read a piece of chunk at the end
+                    if (i == m_NumOfChunksToRead) {
+                        //last entire chunk to read for the last thread
+                        CHUNK_SIZE *= (m_NumOfChunksToRead - (int) m_NumOfChunksToRead);
                     }
                 }
-                byte dataBuffer[] = new byte[CHUNK_SIZE];
-                in.read(dataBuffer, m_Offset, CHUNK_SIZE);
-                Chunk chunk = new Chunk(dataBuffer, m_Offset, i);
-                m_ChunksQueue.put(chunk);
+
+                 */
+                /*
+                if(!m_Metadata.m_ChunksBitMap[i]) {
+                    byte[] dataBuffer = new byte[CHUNK_SIZE];
+                    in.readNBytes(dataBuffer, 0, CHUNK_SIZE);
+                    Chunk chunk = new Chunk(dataBuffer, m_Offset, i);
+                    m_ChunksQueue.put(chunk);
+                }
+                */
+                delta = fileSize - bytesRead;
+                bytesToRead = Math.min(delta, CHUNK_SIZE);
+                if(!m_Metadata.m_ChunksBitMap[i]) {
+                    byte[] dataBuffer = new byte[bytesToRead];
+                    in.readNBytes(dataBuffer, 0, bytesToRead);
+                    Chunk chunk = new Chunk(dataBuffer, m_Offset, i);
+                    m_ChunksQueue.put(chunk);
+                }
                 m_Offset += CHUNK_SIZE;
             }
         } catch (IOException ex) {

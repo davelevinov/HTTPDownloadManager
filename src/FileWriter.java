@@ -38,6 +38,7 @@ public class FileWriter implements Runnable{
                 printDownloadPercentage();
             }
         }
+        m_Metadata.deleteMetaData();
     }
 
     private void printDownloadPercentage() {
@@ -47,7 +48,7 @@ public class FileWriter implements Runnable{
         // if downloading percentage changed, or it's the first time we print a percentage, change the current percentage and print it
         if(m_IsFirstPercentagePrint || (newCurrentPercentage != m_CurrentPercentage)) {
             m_CurrentPercentage = newCurrentPercentage;
-            System.out.println("Downloaded " + m_CurrentPercentage + "%");
+            System.out.println("Downloaded " + m_CurrentPercentage + "%" + " chunk: " + numOfDownloadedChunks);
             m_IsFirstPercentagePrint = false;
         }
     }

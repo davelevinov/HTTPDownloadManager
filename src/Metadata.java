@@ -1,19 +1,20 @@
 import java.io.*;
 import java.nio.file.*;
+import java.sql.SQLOutput;
 
 public class Metadata implements Serializable {
     public boolean[] m_ChunksBitMap;
     public String m_MetadataFileName;
     private int m_NumOfDownloadedChunks;
 
-    public Metadata(int numOfChunks, String metadataFileName)  {
+    public Metadata(int numOfChunks, String metadataFileName) {
         m_ChunksBitMap = new boolean[numOfChunks]; //initially all values are false
         m_MetadataFileName = metadataFileName;
         m_NumOfDownloadedChunks = 0;
     }
 
-    //TO DO
-    public static boolean metadataExists(String metadataFileName){
+    // TODO: fix
+    public static boolean metadataExists(String metadataFileName) {
         File metadataFile = new File(metadataFileName);
         return metadataFile.exists();
     }
@@ -21,24 +22,29 @@ public class Metadata implements Serializable {
     public static Metadata getMetadata(int numOfChunks, String metadataFileName) {
         Metadata metadata;
         //we are resuming an interrupted download
-        if(metadataExists(metadataFileName)){
+        if (metadataExists(metadataFileName)) {
             metadata = getMetadataFromDisk(metadataFileName);
-        }else{
+            System.out.println("METADATA EXISTS - TOOK IT FROM DISK");
+        } else {
             metadata = new Metadata(numOfChunks, metadataFileName);
         }
         return metadata;
     }
 
-    public int getNumOfDownloadedChunks(){
+    public void deleteMetaData(){
+        File metadataFile = new File(m_MetadataFileName);
+        metadataFile.delete();
+    }
+
+    public int getNumOfDownloadedChunks() {
         return m_NumOfDownloadedChunks;
     }
 
     //deserialization
-    //TO DO
+    // TODO: fix
     private static Metadata getMetadataFromDisk(String metadataFileName) {
         Metadata metadata = null;
-        try
-        {
+        try {
             // Reading the metadata instance from the file
             FileInputStream file = new FileInputStream(metadataFileName);
             ObjectInputStream in = new ObjectInputStream(file);
@@ -62,7 +68,7 @@ public class Metadata implements Serializable {
     }
 
     //serialization to save metadata instance into file
-    //TO DO
+    // TODO: fix
     private void updateMetadataOnDisk() {
         try {
             //create temporary metadata file to store the updated instance, inside the folder from where we run the program
