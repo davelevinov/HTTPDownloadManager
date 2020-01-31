@@ -88,6 +88,10 @@ public class Metadata {
             File metadataFile = new File(m_MetadataFileName).getAbsoluteFile();
             Path metadataPath = Paths.get(metadataFile.getAbsolutePath());
 
+           if(metadataFile.exists()){
+                metadataFile.delete();
+           }
+
             //atomic move of contents of temp to metadata
             Files.move(tempPath, metadataPath, StandardCopyOption.ATOMIC_MOVE);
             m_NumOfDownloadedChunks++;

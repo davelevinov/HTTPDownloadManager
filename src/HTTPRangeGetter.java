@@ -38,9 +38,10 @@ public class HTTPRangeGetter implements Runnable {
             BufferedInputStream in = new BufferedInputStream(conn.getInputStream());
             int fileSize = conn.getContentLength();
             int bytesRead = 0;
-            int delta;
-            int bytesToRead;
-            for(int i = 0; i < m_NumOfChunksToRead; i++){
+            int delta = fileSize - bytesRead;
+            int bytesToRead = Math.min(delta, CHUNK_SIZE);
+            int i = 0;
+            while(bytesRead < bytesToRead){
                 /*
                 if ((m_NumOfChunksToRead - (int) m_NumOfChunksToRead) != 0) {
                     //last thread got remainder, so it might read a piece of chunk at the end
@@ -66,6 +67,7 @@ public class HTTPRangeGetter implements Runnable {
                     in.readNBytes(dataBuffer, 0, bytesToRead);
                     Chunk chunk = new Chunk(dataBuffer, m_Offset, i);
                     m_ChunksQueue.put(chunk);
+                    i++;
                 }
                 m_Offset += CHUNK_SIZE;
             }
