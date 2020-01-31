@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.concurrent.BlockingQueue;
 
-public class FileWriter implements Runnable{
+public class FileWriter implements Runnable {
     private BlockingQueue<Chunk> m_ChunksQueue;
     private Metadata m_Metadata;
     private String m_FileName;
@@ -26,11 +26,10 @@ public class FileWriter implements Runnable{
     @Override
     public void run() {
         System.out.println("Writer running...");
-        while (m_Metadata.getNumOfDownloadedChunks() < m_TotalNumOfChunks){
-            if(!m_ChunksQueue.isEmpty()) {
+        while (m_Metadata.getNumOfDownloadedChunks() < m_TotalNumOfChunks) {
+            if (!m_ChunksQueue.isEmpty()) {
                 Chunk chunk = m_ChunksQueue.poll();
                 writeChunkToFile(chunk);
-                updateMetadata(chunk);
                 printDownloadPercentage();
             }
         }
@@ -43,7 +42,7 @@ public class FileWriter implements Runnable{
 
         // if downloading percentage changed, or it's the first time we print a percentage,
         // change the current percentage and print it
-        if(m_IsFirstPercentagePrint || (newCurrentPercentage != m_CurrentPercentage)) {
+        if (m_IsFirstPercentagePrint || (newCurrentPercentage != m_CurrentPercentage)) {
             m_CurrentPercentage = newCurrentPercentage;
             System.out.println("Downloaded " + m_CurrentPercentage + "%" + " chunk: " + numOfDownloadedChunks);
             m_IsFirstPercentagePrint = false;
@@ -63,5 +62,6 @@ public class FileWriter implements Runnable{
         } catch (IOException e) {
             System.err.println("Failed to write packet to file");
         }
+        updateMetadata(chunk);
     }
 }

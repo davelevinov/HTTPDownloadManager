@@ -13,6 +13,7 @@ public class IdcDm {
         int numOfConnections = 1;
 
         if (args.length < 1 || args.length > 2){
+            System.err.println("Usage:");
             System.err.println("java IdcDm URL|URL-LIST-FILE [MAX-CONCURRENT-CONNECTIONS]");
             System.exit(1);
         }
@@ -22,7 +23,7 @@ public class IdcDm {
         }
 
         String URLs = args[0];
-        System.err.printf("Downloading using %d connections...", numOfConnections);
+        System.err.printf("Downloading using %d connections...\n", numOfConnections);
 
         HTTPDownloadManager manager = new HTTPDownloadManager(URLs, numOfConnections);
         manager.startDownload();

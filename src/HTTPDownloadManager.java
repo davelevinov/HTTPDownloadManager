@@ -69,21 +69,19 @@ public class HTTPDownloadManager {
         int startPosition = 0;
         if (m_NumOfConnections == 1) {
             HTTPRangeGetter rangeGetter = new HTTPRangeGetter(startPosition, m_FileLength, threadId,
-                    m_FileURL, m_FileName, m_NumOfChunksPerThread, m_ChunksQueue, m_Metadata);
+                    m_FileURL, m_FileName, m_ChunksQueue, m_Metadata);
             m_Threads[0] = new Thread(rangeGetter);
         } else {
             for (threadId = 0; threadId < m_Threads.length - 1; threadId++) {
-                System.out.println(startPosition);
                 HTTPRangeGetter rangeGetter = new HTTPRangeGetter(startPosition, startPosition + m_RangeSize, threadId,
-                        m_FileURL, m_FileName, m_NumOfChunksPerThread, m_ChunksQueue, m_Metadata);
+                        m_FileURL, m_FileName, m_ChunksQueue, m_Metadata);
                 m_Threads[threadId] = new Thread(rangeGetter);
                 //the startPosition jumps by the number of bytes each thread needs to read
                 startPosition += m_RangeSize;
             }
             // last rangeGetter gets the remainder of the file
-            System.out.println(startPosition);
             HTTPRangeGetter rangeGetter = new HTTPRangeGetter(startPosition, m_FileLength, threadId,
-                    m_FileURL, m_FileName, m_NumOfChunksPerThread, m_ChunksQueue, m_Metadata);
+                    m_FileURL, m_FileName, m_ChunksQueue, m_Metadata);
             m_Threads[threadId] = new Thread(rangeGetter);
         }
     }
@@ -95,8 +93,8 @@ public class HTTPDownloadManager {
     }
 
     private void startWriter() {
-        Thread fileWriter = new Thread(new FileWriter(m_Metadata, m_ChunksQueue, m_FileName,
-                m_FileLength, m_TotalNumOfChunks));
+        Thread fileWriter = new Thread(new FileWriter(m_Metadata, m_ChunksQueue,
+                                       m_FileName, m_FileLength, m_TotalNumOfChunks));
         fileWriter.start();
     }
 

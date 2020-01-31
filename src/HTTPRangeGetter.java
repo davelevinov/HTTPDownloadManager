@@ -13,25 +13,22 @@ public class HTTPRangeGetter implements Runnable {
     private int m_ThreadID;
     private String m_byteRange;
     public int CHUNK_SIZE = 40960;
-    public double m_NumOfChunksToRead;
     private LinkedBlockingQueue<Chunk> m_ChunksQueue;
     private Metadata m_Metadata;
 
     public HTTPRangeGetter(int startPosition, long endPosition, int threadID, String fileURL, String fileName,
-                           double numOfChunksToRead, LinkedBlockingQueue<Chunk> chunksQueue, Metadata metadata) {
+                           LinkedBlockingQueue<Chunk> chunksQueue, Metadata metadata) {
         m_FileURL = fileURL;
         m_CurrentPosition = startPosition;
         m_EndPosition = endPosition;
         m_ThreadID = threadID;
         m_FileName = fileName;
-        m_NumOfChunksToRead = numOfChunksToRead;
         m_ChunksQueue = chunksQueue;
         m_Metadata = metadata;
         m_byteRange = String.format("Bytes=%d-%d", startPosition, endPosition);
     }
 
     public void run() {
-        //open connection
         HttpURLConnection conn = null;
         try {
             URL downloadUrl = new URL(m_FileURL);
@@ -41,13 +38,13 @@ public class HTTPRangeGetter implements Runnable {
             BufferedInputStream in = new BufferedInputStream(conn.getInputStream());
             int delta;
             int bytesToRead;
-            int chunkIndex = (int) Math.ceil(m_CurrentPosition / CHUNK_SIZE);
-            System.out.println("Start downloading range (" + m_CurrentPosition +" - " +
-                    + m_EndPosition +") from: " + m_FileURL);
-            while(m_CurrentPosition < m_EndPosition){
+            int chunkIndex = m_CurrentPosition / CHUNK_SIZE;
+            System.out.println("Start downloading range (" + m_CurrentPosition + " - " +
+                    +m_EndPosition + ") from: " + m_FileURL);
+            while (m_CurrentPosition < m_EndPosition) {
                 delta = (int) m_EndPosition - m_CurrentPosition;
                 bytesToRead = Math.min(delta, CHUNK_SIZE);
-                if(!m_Metadata.m_ChunksArray[chunkIndex]) {
+                if (!m_Metadata.m_ChunksArray[chunkIndex]) {
                     byte[] dataBuffer = new byte[bytesToRead];
                     in.readNBytes(dataBuffer, 0, bytesToRead);
                     Chunk chunk = new Chunk(dataBuffer, m_CurrentPosition, chunkIndex);

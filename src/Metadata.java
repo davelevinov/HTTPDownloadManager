@@ -21,10 +21,15 @@ public class Metadata implements Serializable {
 
     public static Metadata getMetadata(int numOfChunks, String metadataFileName) {
         Metadata metadata;
-        //we are resuming an interrupted download
+        // resuming an interrupted download
         if (metadataExists(metadataFileName)) {
             metadata = getMetadataFromDisk(metadataFileName);
             System.out.println("METADATA EXISTS - TOOK IT FROM DISK");
+            for (int i = 0; i < metadata.m_ChunksArray.length; i++) {
+                if(!metadata.m_ChunksArray[i]) {
+                    System.out.println("value at: " + i + " " + metadata.m_ChunksArray[i]);
+                }
+            }
         } else {
             metadata = new Metadata(numOfChunks, metadataFileName);
         }
@@ -54,7 +59,7 @@ public class Metadata implements Serializable {
 
             in.close();
             file.close();
-
+            metadata.m_ChunksArray[metadata.m_ChunksArray.length-1] = false;
             System.out.println("Metadata instance has been deserialized ");
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
