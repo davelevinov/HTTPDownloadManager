@@ -2,14 +2,13 @@ import java.io.*;
 import java.nio.file.*;
 import java.sql.SQLOutput;
 
-// was implements Serializable
-public class Metadata {
-    public boolean[] m_ChunksBitMap;
+public class Metadata implements Serializable {
+    public boolean[] m_ChunksArray;
     public String m_MetadataFileName;
     private int m_NumOfDownloadedChunks;
 
     public Metadata(int numOfChunks, String metadataFileName) {
-        m_ChunksBitMap = new boolean[numOfChunks]; //initially all values are false
+        m_ChunksArray = new boolean[numOfChunks]; //initially all values are false
         m_MetadataFileName = metadataFileName;
         m_NumOfDownloadedChunks = 0;
     }
@@ -63,8 +62,8 @@ public class Metadata {
         return metadata;
     }
 
-    public void updateChunksBitMap(int chunkIndex) {
-        m_ChunksBitMap[chunkIndex] = true;
+    public void updateChunksArray(int chunkIndex) {
+        m_ChunksArray[chunkIndex] = true;
         updateMetadataOnDisk();
     }
 
@@ -72,8 +71,10 @@ public class Metadata {
     // TODO: fix
     private void updateMetadataOnDisk() {
         try {
-            //create temporary metadata file to store the updated instance, inside the folder from where we run the program
-            File tempMetadataFile = File.createTempFile(m_MetadataFileName, ".tmp", new File(System.getProperty("user.dir")));
+            // create temporary metadata file to store the updated instance,
+            // inside the folder from where we run the program
+            File tempMetadataFile = File.createTempFile(m_MetadataFileName, ".tmp",
+                                                        new File(System.getProperty("user.dir")));
             FileOutputStream tempFileOutputStream = new FileOutputStream(tempMetadataFile);
             ObjectOutputStream out = new ObjectOutputStream(tempFileOutputStream);
 

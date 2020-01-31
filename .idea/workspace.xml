@@ -2,13 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cadf3183-5ff0-49b2-96db-cb07dab3f47b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HTTPDownloadManager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/HTTPDownloadManager.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HTTPDownloadManager/FileWriter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HTTPDownloadManager/FileWriter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HTTPDownloadManager/HTTPDownloadManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HTTPDownloadManager/HTTPDownloadManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HTTPDownloadManager/HTTPRangeGetter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HTTPDownloadManager/HTTPRangeGetter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HTTPDownloadManager/META-INF/HTTPDownloadManager.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HTTPDownloadManager/Metadata.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HTTPDownloadManager/Metadata.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chunk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chunk.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FileWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileWriter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/HTTPDownloadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HTTPDownloadManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/HTTPRangeGetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HTTPRangeGetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IdcDm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IdcDm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Metadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Metadata.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -23,22 +32,25 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IdcDm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
-              <folding>
-                <element signature="method#getListOfURLs#0;class#IdcDm#0" />
-              </folding>
+            <state relative-caret-position="152">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/HTTPDownloadManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
+            <state relative-caret-position="220">
+              <caret line="81" column="13" lean-forward="true" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1200#1201#0" expanded="true" />
+                <element signature="e#1270#1271#0" expanded="true" />
+                <element signature="method#getFileLength#0;class#HTTPDownloadManager#0" />
+                <element signature="method#getTotalNumOfChunks#0;class#HTTPDownloadManager#0" />
+                <element signature="e#2318#2571#1" />
+                <element signature="e#4226#4227#0" expanded="true" />
+                <element signature="e#4328#4329#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -47,8 +59,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/FileWriter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-153">
-              <caret line="45" column="35" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
+            <state relative-caret-position="528">
+              <caret line="60" column="29" selection-start-line="60" selection-start-column="29" selection-end-line="60" selection-end-column="29" />
+              <folding>
+                <element signature="method#run#0;class#FileWriter#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/HTTPRangeGetter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="47" column="40" selection-start-line="47" selection-start-column="40" selection-end-line="47" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -56,17 +80,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Chunk.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="13" selection-start-column="13" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/HTTPRangeGetter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="20" column="78" selection-start-line="20" selection-start-column="78" selection-end-line="20" selection-end-column="78" />
+            <state relative-caret-position="176">
+              <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -74,10 +89,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Metadata.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2015">
-              <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+            <state relative-caret-position="-1611">
+              <caret line="17" column="55" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1298#1299#0" expanded="true" />
+                <element signature="e#1344#1345#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -92,6 +108,20 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>update</find>
+      <find>m_offset</find>
+      <find>m_Offset</find>
+      <find>getOffset</find>
+      <find>offset</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>m_StartPosition</replace>
+      <replace>getStartPosition</replace>
+      <replace>startPosition</replace>
+    </replaceStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -103,10 +133,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/src/Chunk.java" />
         <option value="$PROJECT_DIR$/src/FileWriter.java" />
         <option value="$PROJECT_DIR$/src/Metadata.java" />
-        <option value="$PROJECT_DIR$/src/HTTPDownloadManager.java" />
         <option value="$PROJECT_DIR$/src/HTTPRangeGetter.java" />
+        <option value="$PROJECT_DIR$/src/HTTPDownloadManager.java" />
       </list>
     </option>
   </component>
@@ -122,6 +153,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -139,7 +171,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -151,7 +182,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1580335076106" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1580501068828" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -179,7 +210,7 @@
     <configuration name="IdcDm" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="IdcDm" />
       <module name="HTTPDownloadManager" />
-      <option name="PROGRAM_PARAMETERS" value="https://archive.org/download/Mario1_500/Mario1_500.avi 1" />
+      <option name="PROGRAM_PARAMETERS" value="https://archive.org/download/Mario1_500/Mario1_500.avi 8" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -223,8 +254,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15637584" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16040269" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -234,12 +266,12 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.0878187" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.18413597" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.32294616" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.28470254" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.28470254" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3286119" />
       <window_info anchor="bottom" id="Messages" order="10" />
@@ -368,54 +400,80 @@
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1579702588331" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7810" />
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.6/lib/src.zip!/java.base/java/lang/Runnable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/IdcDm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
-          <folding>
-            <element signature="method#getListOfURLs#0;class#IdcDm#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Chunk.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FileWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-153">
-          <caret line="45" column="35" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
+        <state relative-caret-position="152">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Metadata.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2015">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        <state relative-caret-position="-1611">
+          <caret line="17" column="55" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1298#1299#0" expanded="true" />
+            <element signature="e#1344#1345#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.6/lib/src.zip!/java.base/java/io/RandomAccessFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="587" column="16" selection-start-line="587" selection-start-column="16" selection-end-line="587" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Chunk.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HTTPRangeGetter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="47" column="40" selection-start-line="47" selection-start-column="40" selection-end-line="47" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FileWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="60" column="29" selection-start-line="60" selection-start-column="29" selection-end-line="60" selection-end-column="29" />
+          <folding>
+            <element signature="method#run#0;class#FileWriter#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HTTPDownloadManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
+        <state relative-caret-position="220">
+          <caret line="81" column="13" lean-forward="true" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1200#1201#0" expanded="true" />
+            <element signature="e#1270#1271#0" expanded="true" />
+            <element signature="method#getFileLength#0;class#HTTPDownloadManager#0" />
+            <element signature="method#getTotalNumOfChunks#0;class#HTTPDownloadManager#0" />
+            <element signature="e#2318#2571#1" />
+            <element signature="e#4226#4227#0" expanded="true" />
+            <element signature="e#4328#4329#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/HTTPRangeGetter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="20" column="78" selection-start-line="20" selection-start-column="78" selection-end-line="20" selection-end-column="78" />
         </state>
       </provider>
     </entry>
