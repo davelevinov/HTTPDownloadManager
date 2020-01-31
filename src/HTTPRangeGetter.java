@@ -18,7 +18,7 @@ public class HTTPRangeGetter implements Runnable {
     private Metadata m_Metadata;
 
     public HTTPRangeGetter(double rangeSize, int offset, int threadID, String fileURL, String fileName,
-                           double numOfChunksToRead, LinkedBlockingQueue chunksQueue, Metadata metadata) {
+                           double numOfChunksToRead, LinkedBlockingQueue<Chunk> chunksQueue, Metadata metadata) {
         m_RangeSize = rangeSize;
         m_FileURL = fileURL;
         m_Offset = offset;

@@ -2,7 +2,8 @@ import java.io.*;
 import java.nio.file.*;
 import java.sql.SQLOutput;
 
-public class Metadata implements Serializable {
+// was implements Serializable
+public class Metadata {
     public boolean[] m_ChunksBitMap;
     public String m_MetadataFileName;
     private int m_NumOfDownloadedChunks;

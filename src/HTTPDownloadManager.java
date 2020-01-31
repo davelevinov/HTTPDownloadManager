@@ -58,7 +58,7 @@ public class HTTPDownloadManager {
     //}
 
     public int getTotalNumOfChunks() {
-        int numOfChunks = (int) (m_FileLength / CHUNK_SIZE);
+        int numOfChunks = (m_FileLength / CHUNK_SIZE);
         //we check if there is a remainder for the last chunk
         if (m_FileLength % CHUNK_SIZE != 0) {
             numOfChunks++;

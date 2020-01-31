@@ -43,7 +43,7 @@ public class FileWriter implements Runnable{
 
     private void printDownloadPercentage() {
         int numOfDownloadedChunks = m_Metadata.getNumOfDownloadedChunks();
-        int newCurrentPercentage = (int) (numOfDownloadedChunks * 100 / m_TotalNumOfChunks);
+        int newCurrentPercentage = (numOfDownloadedChunks * 100 / m_TotalNumOfChunks);
 
         // if downloading percentage changed, or it's the first time we print a percentage, change the current percentage and print it
         if(m_IsFirstPercentagePrint || (newCurrentPercentage != m_CurrentPercentage)) {
