@@ -11,7 +11,7 @@ public class HTTPDownloadManager {
     private Thread[] m_Threads;
     private Metadata m_Metadata;
     private int m_TotalNumOfChunks;
-    private static final int CHUNK_SIZE = 40960;
+    private static final int CHUNK_SIZE = 243345;
     private static final String METADATA_NAME_EXTENSION = "_metadata";
     private double m_NumOfChunksPerThread;
     private long m_RangeSize;
@@ -107,7 +107,7 @@ public class HTTPDownloadManager {
     }
 
     private double getNumOfChunksPerThread() {
-        return Math.floor((m_TotalNumOfChunks / m_NumOfConnections));
+        return Math.floor(m_TotalNumOfChunks / m_NumOfConnections);
     }
 
     private long getRangeSize() {

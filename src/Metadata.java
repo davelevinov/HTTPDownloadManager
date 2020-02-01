@@ -5,7 +5,7 @@ import java.sql.SQLOutput;
 public class Metadata implements Serializable {
     public boolean[] m_ChunksArray;
     public String m_MetadataFileName;
-    private int m_NumOfDownloadedChunks;
+    public int m_NumOfDownloadedChunks;
 
     public Metadata(int numOfChunks, String metadataFileName) {
         m_ChunksArray = new boolean[numOfChunks]; //initially all values are false
@@ -25,8 +25,10 @@ public class Metadata implements Serializable {
         if (metadataExists(metadataFileName)) {
             metadata = getMetadataFromDisk(metadataFileName);
             System.out.println("METADATA EXISTS - TOOK IT FROM DISK");
+            System.out.println("value of cell at numofchunks: "+ metadata.m_NumOfDownloadedChunks+" "
+                               + metadata.m_ChunksArray[metadata.m_NumOfDownloadedChunks]);
             for (int i = 0; i < metadata.m_ChunksArray.length; i++) {
-                if(!metadata.m_ChunksArray[i]) {
+                if (!metadata.m_ChunksArray[i]) {
                     System.out.println("value at: " + i + " " + metadata.m_ChunksArray[i]);
                 }
             }
@@ -36,7 +38,7 @@ public class Metadata implements Serializable {
         return metadata;
     }
 
-    public void deleteMetaData(){
+    public void deleteMetaData() {
         File metadataFile = new File(m_MetadataFileName);
         metadataFile.delete();
     }
@@ -59,8 +61,6 @@ public class Metadata implements Serializable {
 
             in.close();
             file.close();
-            metadata.m_ChunksArray[metadata.m_ChunksArray.length-1] = false;
-            System.out.println("Metadata instance has been deserialized ");
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
@@ -69,7 +69,9 @@ public class Metadata implements Serializable {
 
     public void updateChunksArray(int chunkIndex) {
         m_ChunksArray[chunkIndex] = true;
+        m_NumOfDownloadedChunks++;
         updateMetadataOnDisk();
+        System.out.println("updated the array for chunk number: " + chunkIndex);
     }
 
     //serialization to save metadata instance into file
@@ -79,7 +81,7 @@ public class Metadata implements Serializable {
             // create temporary metadata file to store the updated instance,
             // inside the folder from where we run the program
             File tempMetadataFile = File.createTempFile(m_MetadataFileName, ".tmp",
-                                                        new File(System.getProperty("user.dir")));
+                    new File(System.getProperty("user.dir")));
             FileOutputStream tempFileOutputStream = new FileOutputStream(tempMetadataFile);
             ObjectOutputStream out = new ObjectOutputStream(tempFileOutputStream);
 
@@ -94,15 +96,12 @@ public class Metadata implements Serializable {
             File metadataFile = new File(m_MetadataFileName).getAbsoluteFile();
             Path metadataPath = Paths.get(metadataFile.getAbsolutePath());
 
-           if(metadataFile.exists()){
+            if (metadataFile.exists()) {
                 metadataFile.delete();
-           }
+            }
 
             //atomic move of contents of temp to metadata
             Files.move(tempPath, metadataPath, StandardCopyOption.ATOMIC_MOVE);
-            m_NumOfDownloadedChunks++;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
