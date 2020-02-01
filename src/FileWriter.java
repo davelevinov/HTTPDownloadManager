@@ -32,9 +32,12 @@ public class FileWriter implements Runnable {
                 printDownloadPercentage();
             }
         }
-        m_Metadata.deleteMetaData();
-        System.err.println("Download Succeeded");
-    }
+        if (m_Metadata.getNumOfDownloadedChunks() == m_TotalNumOfChunks) {
+            m_Metadata.deleteMetaData();
+            System.err.println("Download Succeeded");
+        } else {System.err.println("Download Failed");}
+
+        }
 
     private void printDownloadPercentage() {
         int numOfDownloadedChunks = m_Metadata.getNumOfDownloadedChunks();

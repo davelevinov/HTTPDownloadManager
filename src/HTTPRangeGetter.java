@@ -12,7 +12,8 @@ public class HTTPRangeGetter implements Runnable {
     private long m_EndPosition;
     private int m_ThreadID;
     private String m_byteRange;
-    public int CHUNK_SIZE = 243345;
+    private int CHUNK_SIZE = 243345;
+    private final int TIMEOUT = 5000;
     private LinkedBlockingQueue<Chunk> m_ChunksQueue;
     private Metadata m_Metadata;
 
@@ -31,22 +32,27 @@ public class HTTPRangeGetter implements Runnable {
     public void run() {
         HttpURLConnection conn = null;
         try {
-            int chunkIndex = (int)Math.ceil(m_CurrentPosition / CHUNK_SIZE);
-            int delta, bytesToRead = 0;
+            int chunkIndex = (int) Math.ceil(m_CurrentPosition / CHUNK_SIZE);
+            int delta, bytesToRead;
             URL downloadUrl = new URL(m_FileURL);
             // iterates and moves the starting position if chunk has been read from previous download
-            while (m_Metadata.m_ChunksArray[chunkIndex]){
+            while (m_Metadata.m_ChunksArray[chunkIndex]) {
                 m_CurrentPosition += CHUNK_SIZE;
                 chunkIndex++;
             }
             conn = (HttpURLConnection) downloadUrl.openConnection();
             conn.setRequestMethod("GET");
+            conn.setConnectTimeout(TIMEOUT);
             m_byteRange = String.format("Bytes=%d-%d", m_CurrentPosition, m_EndPosition);
             conn.setRequestProperty("Range", m_byteRange);
             BufferedInputStream in = new BufferedInputStream(conn.getInputStream());
             System.err.println("[" + m_ThreadID + "]" + " Start downloading range (" + m_CurrentPosition +
                     " - " + m_EndPosition + ") from: " + m_FileURL);
             while (m_CurrentPosition < m_EndPosition) {
+                if (conn.getResponseCode() == HttpURLConnection.HTTP_CLIENT_TIMEOUT) {
+                    System.out.println("download failed");
+                    throw (new IOException());
+                }
                 delta = (int) m_EndPosition - m_CurrentPosition;
                 bytesToRead = Math.min(delta, CHUNK_SIZE);
                 if (!m_Metadata.m_ChunksArray[chunkIndex]) {
@@ -58,6 +64,7 @@ public class HTTPRangeGetter implements Runnable {
                 chunkIndex++;
                 m_CurrentPosition += bytesToRead;
             }
+            System.err.println("[" + m_ThreadID + "]" + " Finished downloading");
         } catch (IOException ex) {
             conn.disconnect();
         }
