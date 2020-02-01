@@ -25,51 +25,41 @@ public class HTTPRangeGetter implements Runnable {
         m_FileName = fileName;
         m_ChunksQueue = chunksQueue;
         m_Metadata = metadata;
-        m_byteRange = String.format("Bytes=%d-%d", startPosition, endPosition);
     }
+
 
     public void run() {
         HttpURLConnection conn = null;
         try {
+            int chunkIndex = (int)Math.ceil(m_CurrentPosition / CHUNK_SIZE);
+            int delta, bytesToRead = 0;
             URL downloadUrl = new URL(m_FileURL);
+            // iterates and moves the starting position if chunk has been read from previous download
+            while (m_Metadata.m_ChunksArray[chunkIndex]){
+                m_CurrentPosition += CHUNK_SIZE;
+                chunkIndex++;
+            }
             conn = (HttpURLConnection) downloadUrl.openConnection();
             conn.setRequestMethod("GET");
+            m_byteRange = String.format("Bytes=%d-%d", m_CurrentPosition, m_EndPosition);
             conn.setRequestProperty("Range", m_byteRange);
             BufferedInputStream in = new BufferedInputStream(conn.getInputStream());
-            int delta;
-            int bytesToRead;
-            int chunkIndex = (int)Math.ceil(m_CurrentPosition / CHUNK_SIZE);
-            int howManyWereRead = 0;
-            int howManyZeros = 0;
             System.err.println("[" + m_ThreadID + "]" + " Start downloading range (" + m_CurrentPosition +
-                                " - " + m_EndPosition + ") from: " + m_FileURL);
-            System.out.println("range for this thread: " + m_ThreadID + " " + m_byteRange);
+                    " - " + m_EndPosition + ") from: " + m_FileURL);
             while (m_CurrentPosition < m_EndPosition) {
                 delta = (int) m_EndPosition - m_CurrentPosition;
                 bytesToRead = Math.min(delta, CHUNK_SIZE);
                 if (!m_Metadata.m_ChunksArray[chunkIndex]) {
                     byte[] dataBuffer = new byte[bytesToRead];
-                    howManyWereRead = in.readNBytes(dataBuffer, 0, bytesToRead);
-                    System.out.println("read this amount of bytes: " + howManyWereRead);
-                    System.out.println("buffer array size " + dataBuffer.length + " for chunk: " + chunkIndex);
-                    for (int i = 0; i < dataBuffer.length; i++) {
-                        if (dataBuffer[i] == 0) howManyZeros++;
-                    }
-                    if (howManyZeros > 1000) System.out.println("number of zeros is: " + howManyZeros +
-                            " for chunk number:" + chunkIndex);
+                    in.readNBytes(dataBuffer, 0, bytesToRead);
                     Chunk chunk = new Chunk(dataBuffer, m_CurrentPosition, chunkIndex);
-                    System.out.println("chunk's current position: " + m_CurrentPosition);
                     m_ChunksQueue.add(chunk);
-                } else {
-                    in.skip(bytesToRead);
-                    System.out.println("I skipped in the input stream: " + bytesToRead + " bytes");
                 }
                 chunkIndex++;
                 m_CurrentPosition += bytesToRead;
             }
         } catch (IOException ex) {
             conn.disconnect();
-            ex.printStackTrace();
         }
     }
 }

@@ -25,7 +25,6 @@ public class FileWriter implements Runnable {
 
     @Override
     public void run() {
-        System.err.println("Writer running...");
         while (m_Metadata.getNumOfDownloadedChunks() < m_TotalNumOfChunks) {
             if (!m_ChunksQueue.isEmpty()) {
                 Chunk chunk = m_ChunksQueue.poll();
@@ -45,7 +44,7 @@ public class FileWriter implements Runnable {
         // change the current percentage and print it
         if (m_IsFirstPercentagePrint || (newCurrentPercentage != m_CurrentPercentage)) {
             m_CurrentPercentage = newCurrentPercentage;
-            System.err.println("Downloaded " + m_CurrentPercentage + "%" + " chunk: " + numOfDownloadedChunks);
+            System.err.println("Downloaded " + m_CurrentPercentage + "%");
             m_IsFirstPercentagePrint = false;
         }
     }
@@ -60,7 +59,6 @@ public class FileWriter implements Runnable {
             downloadedFile = new RandomAccessFile(m_FileName, "rw");
             downloadedFile.seek(chunk.getStartPosition());
             downloadedFile.write(chunk.getChunkData());
-            System.out.println("wrote to disk chunk number: " + chunk.m_ChunkIndex + " number of bytes: " + chunk.m_ChunkData.length);
             updateMetadata(chunk);
         } catch (IOException e) {
             System.err.println("Failed to write packet to file");

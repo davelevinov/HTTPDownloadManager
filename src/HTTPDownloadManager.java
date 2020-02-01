@@ -76,7 +76,7 @@ public class HTTPDownloadManager {
                 HTTPRangeGetter rangeGetter = new HTTPRangeGetter(startPosition, startPosition + m_RangeSize, threadId,
                         m_FileURL, m_FileName, m_ChunksQueue, m_Metadata);
                 m_Threads[threadId] = new Thread(rangeGetter);
-                //the startPosition jumps by the number of bytes each thread needs to read
+                // the startPosition jumps by the number of bytes each thread needs to read
                 startPosition += m_RangeSize;
             }
             // last rangeGetter gets the remainder of the file

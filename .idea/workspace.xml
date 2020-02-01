@@ -3,14 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cadf3183-5ff0-49b2-96db-cb07dab3f47b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HTTPDownloadManager/FileWriter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HTTPDownloadManager/FileWriter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HTTPDownloadManager/HTTPDownloadManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HTTPDownloadManager/HTTPDownloadManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HTTPDownloadManager/HTTPRangeGetter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HTTPDownloadManager/HTTPRangeGetter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HTTPDownloadManager/Metadata.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HTTPDownloadManager/Metadata.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileWriter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/HTTPDownloadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HTTPDownloadManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/HTTPRangeGetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HTTPRangeGetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Metadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Metadata.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,26 +18,24 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IdcDm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
+            <state relative-caret-position="246">
               <caret line="23" selection-start-line="23" selection-end-line="23" />
-              <folding>
-                <element signature="method#getListOfURLs#0;class#IdcDm#0" />
-              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/HTTPDownloadManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-17">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="335">
+              <caret line="78" column="19" selection-start-line="78" selection-start-column="19" selection-end-line="78" selection-end-column="19" />
               <folding>
+                <element signature="e#1199#1200#0" expanded="true" />
+                <element signature="e#1269#1270#0" expanded="true" />
                 <element signature="method#getFileLength#0;class#HTTPDownloadManager#0" />
                 <element signature="method#getTotalNumOfChunks#0;class#HTTPDownloadManager#0" />
                 <element signature="method#startRangeGetters#0;class#HTTPDownloadManager#0" />
                 <element signature="method#startWriter#0;class#HTTPDownloadManager#0" />
-                <element signature="method#startDownload#0;class#HTTPDownloadManager#0" />
                 <element signature="e#4003#4004#0" expanded="true" />
                 <element signature="e#4077#4078#0" expanded="true" />
                 <element signature="e#4112#4113#0" expanded="true" />
@@ -53,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/HTTPRangeGetter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="64" column="91" selection-start-line="64" selection-start-column="91" selection-end-line="64" selection-end-column="91" />
+            <state relative-caret-position="682">
+              <caret line="36" column="101" selection-start-line="36" selection-start-column="101" selection-end-line="36" selection-end-column="101" />
             </state>
           </provider>
         </entry>
@@ -91,8 +83,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Metadata.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="462">
+              <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1537#1538#0" expanded="true" />
@@ -148,9 +140,9 @@
       <list>
         <option value="$PROJECT_DIR$/src/Chunk.java" />
         <option value="$PROJECT_DIR$/src/IdcDm.java" />
-        <option value="$PROJECT_DIR$/src/HTTPDownloadManager.java" />
         <option value="$PROJECT_DIR$/src/Metadata.java" />
         <option value="$PROJECT_DIR$/src/FileWriter.java" />
+        <option value="$PROJECT_DIR$/src/HTTPDownloadManager.java" />
         <option value="$PROJECT_DIR$/src/HTTPRangeGetter.java" />
       </list>
     </option>
@@ -195,7 +187,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1580575375634" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1580579121937" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -267,8 +259,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1549" height="837" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15761234" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15761234" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -278,12 +271,12 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.4540311" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21216407" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3437058" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.29745042" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3069307" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3286119" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.3281471" />
@@ -467,34 +460,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/IdcDm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-          <folding>
-            <element signature="method#getListOfURLs#0;class#IdcDm#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/HTTPDownloadManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-          <folding>
-            <element signature="method#getFileLength#0;class#HTTPDownloadManager#0" />
-            <element signature="method#getTotalNumOfChunks#0;class#HTTPDownloadManager#0" />
-            <element signature="method#startRangeGetters#0;class#HTTPDownloadManager#0" />
-            <element signature="method#startWriter#0;class#HTTPDownloadManager#0" />
-            <element signature="method#startDownload#0;class#HTTPDownloadManager#0" />
-            <element signature="e#4003#4004#0" expanded="true" />
-            <element signature="e#4077#4078#0" expanded="true" />
-            <element signature="e#4112#4113#0" expanded="true" />
-            <element signature="e#4179#4180#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/FileWriter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -502,18 +467,6 @@
           <folding>
             <element signature="e#2123#2124#0" expanded="true" />
             <element signature="e#2190#2191#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Metadata.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1537#1538#0" expanded="true" />
-            <element signature="e#1583#1584#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -529,10 +482,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/IdcDm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Metadata.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1537#1538#0" expanded="true" />
+            <element signature="e#1583#1584#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/HTTPRangeGetter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="64" column="91" selection-start-line="64" selection-start-column="91" selection-end-line="64" selection-end-column="91" />
+        <state relative-caret-position="682">
+          <caret line="36" column="101" selection-start-line="36" selection-start-column="101" selection-end-line="36" selection-end-column="101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HTTPDownloadManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="78" column="19" selection-start-line="78" selection-start-column="19" selection-end-line="78" selection-end-column="19" />
+          <folding>
+            <element signature="e#1199#1200#0" expanded="true" />
+            <element signature="e#1269#1270#0" expanded="true" />
+            <element signature="method#getFileLength#0;class#HTTPDownloadManager#0" />
+            <element signature="method#getTotalNumOfChunks#0;class#HTTPDownloadManager#0" />
+            <element signature="method#startRangeGetters#0;class#HTTPDownloadManager#0" />
+            <element signature="method#startWriter#0;class#HTTPDownloadManager#0" />
+            <element signature="e#4003#4004#0" expanded="true" />
+            <element signature="e#4077#4078#0" expanded="true" />
+            <element signature="e#4112#4113#0" expanded="true" />
+            <element signature="e#4179#4180#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

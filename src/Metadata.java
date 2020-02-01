@@ -24,14 +24,6 @@ public class Metadata implements Serializable {
         // resuming an interrupted download
         if (metadataExists(metadataFileName)) {
             metadata = getMetadataFromDisk(metadataFileName);
-            System.out.println("METADATA EXISTS - TOOK IT FROM DISK");
-            System.out.println("value of cell at numofchunks: "+ metadata.m_NumOfDownloadedChunks+" "
-                               + metadata.m_ChunksArray[metadata.m_NumOfDownloadedChunks]);
-            for (int i = 0; i < metadata.m_ChunksArray.length; i++) {
-                if (!metadata.m_ChunksArray[i]) {
-                    System.out.println("value at: " + i + " " + metadata.m_ChunksArray[i]);
-                }
-            }
         } else {
             metadata = new Metadata(numOfChunks, metadataFileName);
         }
@@ -71,7 +63,6 @@ public class Metadata implements Serializable {
         m_ChunksArray[chunkIndex] = true;
         m_NumOfDownloadedChunks++;
         updateMetadataOnDisk();
-        System.out.println("updated the array for chunk number: " + chunkIndex);
     }
 
     //serialization to save metadata instance into file
